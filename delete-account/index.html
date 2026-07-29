@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Halaman permintaan penghapusan akun dan data aplikasi Tokqo"
+  >
+
+  <meta name="robots" content="index, follow">
+
+  <title>Hapus Akun | Tokqo</title>
+
+  <style>
+    :root {
+      --background: #f5f6f8;
+      --surface: #ffffff;
+      --primary: #111827;
+      --text: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --danger-soft: #fef2f2;
+      --danger-border: #fecaca;
+      --success: #15803d;
+      --success-soft: #f0fdf4;
+      --success-border: #bbf7d0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 800px);
+      margin: 48px auto;
+    }
+
+    .card {
+      padding: 48px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 16px 50px rgba(17, 24, 39, 0.06);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: var(--primary);
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+    }
+
+    h2 {
+      margin: 36px 0 12px;
+      color: var(--primary);
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    .lead {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .notice {
+      margin: 28px 0;
+      padding: 20px;
+      background: var(--danger-soft);
+      border: 1px solid var(--danger-border);
+      border-radius: 16px;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--danger);
+    }
+
+    ul,
+    ol {
+      margin: 12px 0 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .email-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+      padding: 16px 18px;
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .email-label {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .email-address {
+      color: var(--primary);
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .copy-button {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .copy-button:hover {
+      background: #f3f4f6;
+    }
+
+    .request-card {
+      margin-top: 36px;
+      padding: 28px;
+      background: #fafafa;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .request-card h2 {
+      margin-top: 0;
+    }
+
+    .field {
+      margin-top: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      outline: none;
+      font: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #9ca3af;
+      box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.15);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .helper {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px 20px;
+      background: var(--danger);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .submit-button:hover {
+      background: var(--danger-hover);
+    }
+
+    .status {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--success-soft);
+      color: var(--success);
+      border: 1px solid var(--success-border);
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .privacy-link {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .privacy-link a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 24px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        background: #ffffff;
+      }
+
+      .container {
+        width: 100%;
+        margin: 0;
+      }
+
+      .card {
+        padding: 28px 20px;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .email-box {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .copy-button {
+        width: 100%;
+      }
+
+      .request-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <main class="card">
+      <a class="brand" href="/" aria-label="Tokqo">
+        <span class="brand-logo">T</span>
+        <span>Tokqo</span>
+      </a>
+
+      <div class="badge">Penghapusan akun</div>
+
+      <h1>Hapus akun dan data Tokqo</h1>
+
+      <p class="lead">
+        Anda dapat meminta penghapusan akun Tokqo beserta data yang
+        terhubung dengan akun tersebut melalui halaman ini.
+      </p>
+
+      <div class="notice">
+        <strong>Tindakan ini bersifat permanen</strong>
+
+        Setelah proses penghapusan selesai, akun dan data yang telah
+        dihapus tidak dapat dipulihkan kembali.
+      </div>
+
+      <h2>Cara menghapus akun dari aplikasi</h2>
+
+      <ol>
+        <li>Buka aplikasi Tokqo.</li>
+        <li>Masuk ke menu <strong>Profil</strong> atau <strong>Pengaturan</strong>.</li>
+        <li>Pilih menu <strong>Akun</strong>.</li>
+        <li>Pilih <strong>Hapus Akun</strong>.</li>
+        <li>Ikuti proses verifikasi dan konfirmasi penghapusan.</li>
+      </ol>
+
+      <h2>Data yang akan dihapus</h2>
+
+      <p>
+        Setelah permintaan berhasil diverifikasi, data berikut dapat
+        dihapus dari sistem Tokqo:
+      </p>
+
+      <ul>
+        <li>Informasi profil dan akun pengguna.</li>
+        <li>Informasi toko yang dimiliki oleh akun.</li>
+        <li>Data produk, kategori, dan persediaan.</li>
+        <li>Data transaksi penjualan dan pembayaran.</li>
+        <li>Data kas masuk, kas keluar, dan sesi kasir.</li>
+        <li>Data laporan dan aktivitas lain yang terhubung dengan akun.</li>
+      </ul>
+
+      <h2>Data yang mungkin tetap disimpan</h2>
+
+      <p>
+        Sebagian data dapat tetap disimpan untuk jangka waktu tertentu
+        apabila diperlukan untuk:
+      </p>
+
+      <ul>
+        <li>Memenuhi kewajiban hukum atau perpajakan.</li>
+        <li>Menyelesaikan transaksi atau perselisihan.</li>
+        <li>Mencegah penipuan dan penyalahgunaan layanan.</li>
+        <li>Menjaga keamanan sistem dan pengguna.</li>
+        <li>Memenuhi kewajiban pencatatan yang berlaku.</li>
+      </ul>
+
+      <p>
+        Data yang dipertahankan akan dibatasi dan tidak digunakan untuk
+        tujuan lain di luar kebutuhan tersebut.
+      </p>
+
+      <h2>Jangka waktu pemrosesan</h2>
+
+      <p>
+        Permintaan penghapusan akun akan diperiksa dan diproses paling
+        lambat dalam waktu <strong>30 hari kalender</strong> setelah
+        identitas dan kepemilikan akun berhasil diverifikasi.
+      </p>
+
+      <h2>Hubungi Tokqo</h2>
+
+      <p>
+        Apabila Anda tidak dapat mengakses aplikasi, kirimkan permintaan
+        penghapusan akun melalui email berikut:
+      </p>
+
+      <div class="email-box">
+        <div>
+          <span class="email-label">Email dukungan</span>
+
+          <a
+            class="email-address"
+            id="supportEmail"
+            href="mailto:support@tokqo.com"
+          >
+            support@tokqo.com
+          </a>
+        </div>
+
+        <button
+          class="copy-button"
+          id="copyEmailButton"
+          type="button"
+        >
+          Salin email
+        </button>
+      </div>
+
+      <section class="request-card">
+        <h2>Kirim permintaan penghapusan</h2>
+
+        <p>
+          Isi informasi berikut. Setelah tombol diklik, aplikasi email
+          Anda akan terbuka dengan format permintaan yang telah disiapkan.
+        </p>
+
+        <form id="deleteAccountForm">
+          <div class="field">
+            <label for="name">Nama pengguna</label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Masukkan nama Anda"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="email">Email yang terdaftar</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="nama@email.com"
+              required
+            >
+
+            <span class="helper">
+              Gunakan email yang terhubung dengan akun Tokqo.
+            </span>
+          </div>
+
+          <div class="field">
+            <label for="storeName">Nama toko</label>
+
+            <input
+              id="storeName"
+              name="storeName"
+              type="text"
+              placeholder="Masukkan nama toko"
+            >
+          </div>
+
+          <div class="field">
+            <label for="reason">Alasan penghapusan</label>
+
+            <textarea
+              id="reason"
+              name="reason"
+              placeholder="Opsional: jelaskan alasan Anda menghapus akun"
+            ></textarea>
+          </div>
+
+          <button class="submit-button" type="submit">
+            Kirim permintaan melalui email
+          </button>
+
+          <div class="status" id="statusMessage" role="status">
+            Aplikasi email telah dibuka. Kirim email tersebut untuk
+            meneruskan permintaan penghapusan akun.
+          </div>
+        </form>
+      </section>
+
+      <p class="privacy-link">
+        Informasi lebih lanjut mengenai pengelolaan data dapat dibaca
+        pada
+        <a href="/privacy/">Kebijakan Privasi Tokqo</a>.
+      </p>
+    </main>
+
+    <footer>
+      © <span id="currentYear"></span> Tokqo. Seluruh hak dilindungi.
+    </footer>
+  </div>
+
+  <script>
+    const SUPPORT_EMAIL = "workdeeen@gmail.com";
+
+    const form = document.getElementById("deleteAccountForm");
+    const copyButton = document.getElementById("copyEmailButton");
+    const statusMessage = document.getElementById("statusMessage");
+    const currentYear = document.getElementById("currentYear");
+
+    currentYear.textContent = new Date().getFullYear();
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(SUPPORT_EMAIL);
+        copyButton.textContent = "Tersalin";
+
+        window.setTimeout(() => {
+          copyButton.textContent = "Salin email";
+        }, 2000);
+      } catch (error) {
+        window.prompt("Salin alamat email berikut:", SUPPORT_EMAIL);
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const storeName = document.getElementById("storeName").value.trim();
+      const reason = document.getElementById("reason").value.trim();
+
+      const subject = "Permintaan Penghapusan Akun Tokqo";
+
+      const body = [
+        "Halo Tim Tokqo,",
+        "",
+        "Saya ingin mengajukan permintaan penghapusan akun dan data Tokqo.",
+        "",
+        `Nama: ${name}`,
+        `Email terdaftar: ${email}`,
+        `Nama toko: ${storeName || "-"}`,
+        `Alasan penghapusan: ${reason || "-"}`,
+        "",
+        "Saya memahami bahwa penghapusan akun bersifat permanen dan data yang telah dihapus mungkin tidak dapat dipulihkan kembali.",
+        "",
+        "Mohon informasikan apabila diperlukan verifikasi tambahan.",
+        "",
+        "Terima kasih."
+      ].join("\n");
+
+      const mailtoUrl =
+        `mailto:${SUPPORT_EMAIL}` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
+
+      statusMessage.style.display = "block";
+
+      window.location.href = mailtoUrl;
+    });
+  </script>
+</body>
+</html>
